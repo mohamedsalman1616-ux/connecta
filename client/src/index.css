@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #F8F7FC;
+  --c-surface: 255 255 255;
+  --c-ink: 30 23 51;
+  --c-muted: 105 96 130;
+  --c-accent: 101 70 184;
+  --c-accent2: 167 139 250;
+  --b1: #6546B8;
+  --b2: #8B6EE8;
+  --c-surface-hover: 233 226 250;
+  --c-border: 221 213 243;
+  --c-card: 233 226 250;
+  --bubble-me-bg: linear-gradient(135deg, #8B6EE8, #6546B8);
+  --bubble-other-bg: #EFEAFB;
+  --sidebar-bg: linear-gradient(180deg, #5437A5 0%, #3F2782 100%);
+}
+
+[data-theme='dark'] {
+  --bg: #0E0D12;
+  --c-surface: 22 20 28;
+  --c-ink: 244 242 250;
+  --c-muted: 159 151 184;
+  --c-accent: 167 139 250;
+  --c-accent2: 101 70 184;
+  --b1: #6546B8;
+  --b2: #8B6EE8;
+  --c-surface-hover: 38 34 51;
+  --c-border: 46 41 64;
+  --c-card: 29 26 38;
+  --bubble-me-bg: linear-gradient(135deg, #7454CE, #563AA6);
+  --bubble-other-bg: #1E1A2B;
+  --sidebar-bg: linear-gradient(180deg, #1E1538 0%, #140F24 100%);
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: rgb(var(--c-ink));
+  background: var(--bg);
+  background-attachment: fixed;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, .display {
+  font-family: 'Sora', 'DM Sans', system-ui, sans-serif;
+  letter-spacing: -0.015em;
+}
+
+/* Glass styling with subtle lavender border and clean shadow */
+.glass {
+  background: rgb(var(--c-surface) / 0.9);
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  border: 1px solid rgb(var(--c-border) / 0.85);
+  box-shadow: 0 4px 18px -2px rgb(101 70 184 / 0.06);
+}
+
+.glass-card {
+  background: rgb(var(--c-card) / 0.72);
+  border: 1px solid rgb(var(--c-border) / 0.9);
+  box-shadow: 0 2px 12px -1px rgb(101 70 184 / 0.06);
+}
+
+.sidebar-royal {
+  background: var(--sidebar-bg);
+  border-right: 1px solid rgb(255 255 255 / 0.12);
+}
+
+/* Buttons with Royal Purple gradient */
+.btn-grad {
+  background: linear-gradient(135deg, var(--b1), var(--b2));
+  color: #FFFFFF;
+  box-shadow: 0 2px 10px rgb(101 70 184 / 0.25);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-grad:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgb(101 70 184 / 0.32);
+}
+
+.btn-grad:active {
+  transform: translateY(0);
+}
+
+/* Message bubbles: Soft Purple for sent, Very Light Lavender for received */
+.bubble-me {
+  background: var(--bubble-me-bg);
+  color: #FFFFFF;
+  box-shadow: 0 2px 10px rgb(101 70 184 / 0.18);
+}
+
+.bubble-other {
+  background: var(--bubble-other-bg);
+  border: 1px solid rgb(var(--c-border) / 0.85);
+  box-shadow: 0 1px 6px rgb(101 70 184 / 0.05);
+}
+
+/* Form input fields */
+.field {
+  width: 100%;
+  border-radius: 0.875rem;
+  border: 1px solid rgb(var(--c-border));
+  background: rgb(var(--c-surface));
+  padding: 0.65rem 0.9rem;
+  color: inherit;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.field:focus {
+  border-color: rgb(var(--c-accent));
+  background: rgb(var(--c-surface));
+  box-shadow: 0 0 0 3px rgb(var(--c-accent) / 0.18);
+}
+
+.field::placeholder {
+  color: rgb(var(--c-muted) / 0.85);
+}
+
+/* Protected content and screenshot prevention deterrence */
+.protected, .protected * {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+
+/* Accessibility focus indicator */
+button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid rgb(var(--c-accent));
+  outline-offset: 2px;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--c-muted) / 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--c-muted) / 0.5);
+}
+
+/* Print protection */
+@media print {
+  body * {
+    display: none !important;
+  }
+  body::after {
+    content: 'Protected Content - Printing and screen exports are restricted in Connecta.';
+    display: block;
+    font: 22px 'DM Sans', sans-serif;
+    padding: 60px;
+    color: #1E1733;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

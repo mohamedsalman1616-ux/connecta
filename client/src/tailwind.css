@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Re-export custom styling for direct tailwind.css imports */
+@import './index.css';
+
